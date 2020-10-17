@@ -8,12 +8,17 @@ import MapMarker from '../../images/map-marker.png';
 import { useFonts } from 'expo-font';
 import { Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold } from '@expo-google-fonts/nunito';
 import { useNavigation } from '@react-navigation/native';
+import { RectButton } from 'react-native-gesture-handler';
 
 export default function OrphamageMap() {
   const navigation = useNavigation();
 
   function handleNavigationToOrphanageDetails() {
     navigation.navigate('OrphanageDetails');
+  }
+
+  function handleNavigationToCreateOrphanage() {
+    navigation.navigate('SelectMapPosition');
   }
 
 
@@ -60,11 +65,11 @@ export default function OrphamageMap() {
       <View style={styles.footerContainer}>
         <Text style={styles.footerText}>2 orfanatos foram encontrados</Text>
       
-          <TouchableOpacity 
+          <RectButton 
             style={styles.createOrphanageButton}
-            onPress={() => {}} >
+            onPress={handleNavigationToCreateOrphanage} >
               <Feather name="plus" size={20} color="#fff" />
-            </TouchableOpacity>
+            </RectButton>
       </View>
 
     </View>
