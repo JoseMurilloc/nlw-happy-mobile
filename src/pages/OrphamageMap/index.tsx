@@ -7,10 +7,9 @@ import { Feather } from '@expo/vector-icons'
 import MapMarker from '../../images/map-marker.png';
 import { useFonts } from 'expo-font';
 import { Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold } from '@expo-google-fonts/nunito';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 import api from '../../services/api';
-import { or } from 'react-native-reanimated';
 
 interface OrphanageProps {
   id: number;
@@ -22,13 +21,13 @@ interface OrphanageProps {
 export default function OrphamageMap() {
   const navigation = useNavigation();
 
-  const [orphanages, setOrphanages] = useState<OrphanageProps[]>([])
+  const [orphanages, setOrphanages] = useState<OrphanageProps[]>([]);
 
-  useEffect(() => {
+  useFocusEffect(() => {
     api.get('/orphanages').then(response => {
       setOrphanages(response.data);
     })
-  }, [])
+  })
 
 
   function handleNavigationToOrphanageDetails(id: number) {
